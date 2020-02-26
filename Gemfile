@@ -91,3 +91,4 @@ platform :ruby do
   end
 end
 gem "simplecov", require: false, group: :test
+gem "nokogiri", ">= 1.10.8"
