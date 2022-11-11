@@ -5,24 +5,49 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 4.2
 
-* System dependencies
+* System dependencies: postgresql database with nsl schema, integrates with Services, Editor
 
-* Configuration
+* Configuration: sample:
+     Rails.configuration.hub = "http://localhost:2016"
+     Rails.configuration.instance_editor = "http://localhost:2014"
+     Rails.configuration.services = "http://localhost:8090"
+     Rails.configuration.services_path = "/nsl/services"
+     Rails.configuration.taxonomies = {
+                                   'foa' => { name: 'Flora of Australia',
+                                              intro: "The Flora of Australia has a taxonomy..."
+                                            },
+                                   'sac' => {  name: 'South Australia Census',
+                                               intro: "The South Australia Census has a taxonomy..." },
+                                            }
 
-* Database creation
+     Rails.configuration.environment = 'development'
 
-* Database initialization
+     if ENV['SESSION_KEY_TAG'].nil?
+       Rails.configuration.session_key_tag = 'dev'
+     else
+       Rails.configuration.session_key_tag = ENV['SESSION_KEY_TAG']
+     end
 
-* How to run the test suite
+     Rails.configuration.nsl_path = "http://localhost:2016/"
+     Rails.configuration.flora_path = "http://localhost:2016/flora"
+     Rails.configuration.fauna_path = "http://localhost:2016/fauna"
+     
+     Rails.configuration.image_links_supported = true
+     Rails.configuration.image_data_url = "http://www.anbg.gov.au/cgi-bin/apiiDigital?name=%&FORMAT=CSV"
+     Rails.configuration.image_display_url = "http://www.anbg.gov.au/cgi-bin/apiiName2?name="
+     Rails.configuration.image_cache_expiry_period = 24.hours
+
+
+
+* Database creation: this relies on an existing NSL database
+
+* Database initialization: this relies on an existing NSL database
+
+* How to run the test suite: rake test
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+* Deployment instructions: was developed in the NSL environment
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
